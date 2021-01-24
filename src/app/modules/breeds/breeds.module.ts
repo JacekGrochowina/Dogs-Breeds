@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { BreedsRoutingModule } from './breeds-routing.module';
 import { BreedsComponent } from './breeds.component';
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [BreedsComponent],
   imports: [
     CommonModule,
-    BreedsRoutingModule
+    BreedsRoutingModule,
+    SharedModule,
   ]
 })
 export class BreedsModule { }

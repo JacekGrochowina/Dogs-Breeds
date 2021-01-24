@@ -1,0 +1,28 @@
+<mat-drawer-container class="main-wrapper" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+      <mat-nav-list class="sidenav__nav nav">
+        <a mat-list-item class="nav__link" href="/"> <mat-icon class="nav__icon">home</mat-icon> Domowa </a>
+        <a mat-list-item class="nav__link" href="/settings"> <mat-icon class="nav__icon">settings</mat-icon> Ustawienia </a>
+
+        <!-- <a routerLink="/"> Domowa </a>
+        <a routerLink="/settings"> Ustawienia </a> -->
+
+        <!-- <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"> Domowa </a>
+        <a routerLink="/settings" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"> Ustawienia </a> -->
+      </mat-nav-list>
+  </mat-drawer>
+
+
+  <div class="sidenav__content">
+    <button mat-mini-fab color="primary" class="hamburger__btn" (click)="drawer.toggle()" aria-label="Toggle sidenav">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div class="sidenav__container container">
+      <mat-card>
+        <ng-content></ng-content>
+      </mat-card>
+    </div>
+  </div>
+
+</mat-drawer-container>

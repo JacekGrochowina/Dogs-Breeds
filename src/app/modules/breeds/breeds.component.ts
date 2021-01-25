@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BreedsFacade } from 'src/app/+state/breeds.facade';
 
 @Component({
   selector: 'app-breeds',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BreedsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private breedsFacade: BreedsFacade
+  ) { }
 
   ngOnInit(): void {
+    this.breedsFacade.getBreeds();
   }
 
 }

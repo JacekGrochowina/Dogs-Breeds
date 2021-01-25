@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BreedsRoutingModule } from './breeds-routing.module';
 import { BreedsComponent } from './breeds.component';
 import { SharedModule } from '../shared/shared.module';
+import { BreedsFacade } from 'src/app/+state/breeds.facade';
 
 @NgModule({
   declarations: [BreedsComponent],
@@ -11,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     BreedsRoutingModule,
     SharedModule,
-  ]
+  ],
+  providers: [BreedsFacade]
 })
 export class BreedsModule { }

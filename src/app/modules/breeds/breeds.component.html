@@ -1,2 +1,14 @@
 <app-header>Rasy psów</app-header>
-<p>breeds works!</p>
+
+<mat-nav-list>
+    <ng-container *ngFor="let breedKey of breeds">
+        <mat-list-item>{{ breedKey | titlecase }}</mat-list-item>
+
+        <mat-nav-list *ngIf="data[breedKey].length > 0" style="margin-left:30px;">
+            <div *ngFor="let breed of data[breedKey]">
+                <mat-list-item>{{ breed | titlecase }}</mat-list-item>
+            </div>
+        </mat-nav-list>
+        
+    </ng-container>
+</mat-nav-list>

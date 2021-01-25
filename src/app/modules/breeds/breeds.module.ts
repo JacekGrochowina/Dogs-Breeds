@@ -6,12 +6,17 @@ import { BreedsComponent } from './breeds.component';
 import { SharedModule } from '../shared/shared.module';
 import { BreedsFacade } from 'src/app/+state/breeds.facade';
 
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [BreedsComponent],
   imports: [
     CommonModule,
     BreedsRoutingModule,
     SharedModule,
+    MatListModule,
+    MatIconModule,
   ],
   providers: [BreedsFacade]
 })

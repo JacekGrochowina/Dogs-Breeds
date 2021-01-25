@@ -1,5 +1,4 @@
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators'
 

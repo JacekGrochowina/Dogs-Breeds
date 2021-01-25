@@ -22,7 +22,6 @@
     ]
   },
   "angularCompilerOptions": {
-    "enableIvy": false,
     "strictFunctionTypes": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

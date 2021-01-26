@@ -27,7 +27,7 @@ import { BreedsEffects } from './+state/breeds.effects';
     MaterialModule,
     HttpClientModule,
     StoreModule.forRoot({
-      state: BreedsReducer
+      breeds: BreedsReducer
     }),
     EffectsModule.forRoot([BreedsEffects]),
     StoreDevtoolsModule.instrument({

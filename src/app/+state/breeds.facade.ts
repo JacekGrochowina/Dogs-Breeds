@@ -1,23 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+
 import { AppState } from 'src/app/+state/app-state.model';
 import { GetBreeds } from './breeds.actions';
 
-import { filter } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { Breeds } from '../resources/interfaces/Breeds';
-
 @Injectable()
-export class BreedsFacade {   
-    constructor(private store: Store<AppState>) { }
+export class BreedsFacade {
+  // @TODO tutaj się rozpierdala typowanie stora
+  breeds$ = this.store.select(store => (store as any).breeds.breeds);
 
-    getBreeds(): void {
-        this.store.dispatch(new GetBreeds());
-    }
+  // @TODO a rozpierdala się przed zły typ w constructorze
+  constructor(private store: Store<AppState>) {
+  }
 
-    breedsResponse(): Observable<Breeds> {
-        return this.store.select(store => store.state.breeds).pipe(
-            filter(breeds => !!breeds),
-        );
-    }
+  getBreeds(): void {
+    this.store.dispatch(new GetBreeds());
+  }
 }

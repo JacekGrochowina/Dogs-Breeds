@@ -1,6 +1,6 @@
 <app-header>Rasy psów</app-header>
 
-<mat-nav-list>
+<mat-nav-list *ngIf="(breeds$ | async) as breeds">
     <!-- <ng-container *ngFor="let breedKey of breeds">
         <mat-list-item>{{ breedKey | titlecase }}</mat-list-item>
 
@@ -9,7 +9,7 @@
                 <mat-list-item>{{ breed | titlecase }}</mat-list-item>
             </div>
         </mat-nav-list>
-        
+
     </ng-container> -->
 
     <ng-container *ngFor="let breed of breeds">
@@ -21,5 +21,5 @@
             </div>
         </mat-nav-list>
     </ng-container>
-    
+
 </mat-nav-list>

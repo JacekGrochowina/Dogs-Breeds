@@ -1,5 +1,5 @@
-import { Breeds } from '../resources/interfaces/Breeds';
+import { Breeds } from '../resources/interfaces/breeds.interface';
 
 export interface AppState {
-    readonly breeds: Breeds[]
+    breeds: any[];
 }

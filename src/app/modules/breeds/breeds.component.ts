@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { BreedsFacade } from 'src/app/+state/breeds.facade';
-import { BreedsList } from 'src/app/resources/interfaces/BreedsList';
+import { Breeds } from 'src/app/resources/interfaces/Breeds';
 
 @Component({
   selector: 'app-breeds',
@@ -11,8 +11,9 @@ import { BreedsList } from 'src/app/resources/interfaces/BreedsList';
 })
 export class BreedsComponent implements OnInit, OnDestroy {
 
-  data!: BreedsList;
-  breeds!: string[];
+  // data!: Breeds;
+  // breeds!: string[];
+  breeds!: any;
   private unsubscribeSubject = new Subject<void>();
 
   constructor(private breedsFacade: BreedsFacade) { }
@@ -20,10 +21,14 @@ export class BreedsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.breedsFacade.getBreeds();
 
-    this.breedsFacade.breedsResponse().subscribe((breeds: BreedsList) => {
-      this.data = breeds;
-      this.breeds = Object.keys(this.data);
+    this.breedsFacade.breedsResponse().subscribe((breeds: Breeds) => {
+      // this.data = breeds;
+      // this.breeds = Object.keys(this.data);
+      this.breeds = breeds;
+      console.log(breeds);
+      console.log(typeof breeds);
     })
+
     takeUntil(this.unsubscribeSubject);
   }
 

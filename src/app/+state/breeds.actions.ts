@@ -1,8 +1,7 @@
 import { Action } from '@ngrx/store';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { GetBreedsSuccess as _GetBreedsSuccess } from 'src/app/resources/interfaces/GetBreedsSuccess';
-import { BreedsList } from '../resources/interfaces/BreedsList';
+import { GetBreedsSuccessPayload } from 'src/app/resources/interfaces/GetBreedsSuccessPayload';
 
 export enum BreedsActionTypes {
     getBreeds = '[Breeds] Get Breeds',
@@ -12,14 +11,12 @@ export enum BreedsActionTypes {
 
 export class GetBreeds implements Action {
     readonly type = BreedsActionTypes.getBreeds;
-
-    payload!: BreedsList;
 }
 
 export class GetBreedsSuccess implements Action {
     readonly type = BreedsActionTypes.getBreedsSuccess;
 
-    constructor(public payload: _GetBreedsSuccess) {}
+    constructor(public payload: GetBreedsSuccessPayload) {}
 }
 
 export class GetBreedsFail implements Action {

@@ -1,5 +1,5 @@
-import { BreedsList } from "../resources/interfaces/BreedsList";
+import { Breeds } from '../resources/interfaces/Breeds';
 
 export interface AppState {
-    readonly breeds: BreedsList;
+    readonly breeds: Breeds[]
 }

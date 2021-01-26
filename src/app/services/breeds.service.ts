@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { GetBreedsSuccess } from '../resources/interfaces/GetBreedsSuccess';
+import { GetBreedsSuccessPayload } from '../resources/interfaces/GetBreedsSuccessPayload';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class BreedsService {
 
   constructor(private http: HttpClient) { }
 
-  getBreeds(): Observable<GetBreedsSuccess> {
-    return this.http.get<GetBreedsSuccess>(this.endpoints.getBreeds);
+  getBreeds(): Observable<GetBreedsSuccessPayload> {
+    return this.http.get<GetBreedsSuccessPayload>(this.endpoints.getBreeds);
   }
 }

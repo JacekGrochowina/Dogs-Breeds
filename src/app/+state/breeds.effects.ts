@@ -17,7 +17,7 @@ export class BreedsEffects {
         ofType(BreedsActionTypes.getBreeds),
         switchMap(() => {
           return this.breedsService.getBreeds()
-            .pipe(map(response => new GetBreedsSuccess(response)));
+            .pipe(map(response => new GetBreedsSuccess(response.message)));
         })
     );
 }

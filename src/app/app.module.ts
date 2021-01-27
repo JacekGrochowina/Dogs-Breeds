@@ -27,6 +27,7 @@ import { BreedsEffects } from './+state/breeds.effects';
     MaterialModule,
     HttpClientModule,
     StoreModule.forRoot({
+      // @ts-ignore
       breeds: BreedsReducer
     }),
     EffectsModule.forRoot([BreedsEffects]),

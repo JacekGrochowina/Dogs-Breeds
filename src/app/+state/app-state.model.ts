@@ -3,6 +3,6 @@ import { SettingsState } from '../resources/interfaces/settings-state.interface'
 
 export interface AppState {
     // breeds: any;
-    breeds: BreedsState;
+    breeds: any;
     settings?: SettingsState;
 }

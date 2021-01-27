@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { GetBreedsSuccessPayload } from 'src/app/resources/interfaces/GetBreedsSuccessPayload';
+import { GetBreedsSuccessPayload } from 'src/app/resources/interfaces/get-breeds-success-payload.interface';
 
 export enum BreedsActionTypes {
     getBreeds = '[Breeds] Get Breeds',

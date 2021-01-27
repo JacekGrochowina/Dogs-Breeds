@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { GetBreedsSuccessPayload } from '../resources/interfaces/GetBreedsSuccessPayload';
+import { GetBreedsSuccessPayload } from '../resources/interfaces/get-breeds-success-payload.interface';
 
 @Injectable({
   providedIn: 'root'

@@ -1,12 +1,17 @@
 import { AppState } from './app-state.model';
 import { BreedsAction, BreedsActionTypes } from './breeds.actions';
+import { BreedsState } from './../resources/interfaces/breeds-state.interface';
 
-const initialState: AppState = {
+const breedsInitialState: BreedsState = {
+  // breeds: [
+  //   ["rasa", ["podrasa1", "podrasa2"]],
+  //   ["rasa", ["podrasa1", "podrasa2"]],
+  // ]
   breeds: []
 };
 
 export function BreedsReducer(
-  state = initialState,
+  state = breedsInitialState,
   action: BreedsAction
 ): AppState {
   switch (action.type) {
@@ -24,10 +29,16 @@ export function BreedsReducer(
     }
 
     case BreedsActionTypes.getBreedsFail: {
-      return state;
+      // return state;
+      return {
+        ...state
+      };
     }
 
     default:
-      return state;
+      // return state;
+      return {
+        ...state
+      };
   }
 }

@@ -1,4 +1,4 @@
 export interface SettingsState {
-    numberPhotos: number;
+    photoAmount: number;
     language: string;
 }

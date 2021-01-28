@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SettingsFacade } from './+state/settings.facade';
 
 interface Range {
@@ -11,43 +11,55 @@ interface Range {
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
 
   range: Range = {
     min: 1,
     max: 100
   }
-  numberPhotos: number = this.settingsFacade.getNumberPhotos();
-  language: string = this.settingsFacade.getLanguage();
+  photoAmount!: number;
+  language!: string;
 
   constructor(private settingsFacade: SettingsFacade) { }
 
-  changeNumberPhotos(): void {
+  ngOnInit() {
+    this.handlePhotoAmount();
+    this.handleLanguage();
+  }
+
+  handlePhotoAmount(): void {
+    this.settingsFacade.photoAmount$
+      .subscribe((photoAmount: number) => {
+        this.photoAmount = photoAmount;
+      });
+  }
+
+  handleLanguage(): void {
+    this.settingsFacade.language$
+      .subscribe((language: string) => {
+        this.language = language;
+      });
+  }
+
+  onChangePhotoAmount(): void {
     this.checkValue();
-    if(this.isCorrect()) {
-      this.settingsFacade.setNumberPhotos(this.numberPhotos);
-    }
+    this.settingsFacade.setNumberPhotos(this.photoAmount);
   }
 
   checkValue(): void {
     if(this.isTooLow()) {
-      this.numberPhotos = 1;
-    }
-    if(this.isTooHigh()) {
-      this.numberPhotos = 100;
+      this.photoAmount = 1;
+    } else if(this.isTooHigh()) {
+      this.photoAmount = 100;
     }
   }
 
   isTooLow(): boolean {
-    return this.numberPhotos < this.range.min;
+    return this.photoAmount < this.range.min;
   }
 
   isTooHigh(): boolean {
-    return this.numberPhotos > this.range.max;
-  }
-
-  isCorrect(): boolean {
-    return this.numberPhotos >= this.range.min || this.numberPhotos <= this.range.max;
+    return this.photoAmount > this.range.max;
   }
 
   changeLanguage(): void {

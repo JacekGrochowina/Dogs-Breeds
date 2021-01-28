@@ -1,25 +1,15 @@
 import { Action } from '@ngrx/store';
 
 export enum SettingsActionTypes {
-    getNumberPhotos = '[Settings] Get Number Photos',
-    setNumberPhotos = '[Settings] Set Number Photos',
-    getLanguage = '[Settings] Get Language',
+    setPhotoAmount = '[Settings] Set Number Photos',
     setLanguage = '[Settings] Set Language',
 }
 
-export class GetNumberPhotos implements Action {
-    readonly type = SettingsActionTypes.getNumberPhotos;
-}
-
 export class SetNumberPhotos implements Action {
-    readonly type = SettingsActionTypes.setNumberPhotos;
+    readonly type = SettingsActionTypes.setPhotoAmount;
 
     constructor(public payload: number) {}
 }
-
-export class GetLanguage implements Action {
-    readonly type = SettingsActionTypes.getLanguage;
-} 
 
 export class SetLanguage implements Action {
     readonly type = SettingsActionTypes.setLanguage;
@@ -28,7 +18,5 @@ export class SetLanguage implements Action {
 }
 
 export type SettingsAction
-    = GetNumberPhotos
-    | SetNumberPhotos
-    | GetLanguage
+    = SetNumberPhotos
     | SetLanguage;

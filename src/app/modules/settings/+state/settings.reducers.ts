@@ -4,7 +4,7 @@ import { SettingsAction, SettingsActionTypes } from './settings.actions';
 import { Languages } from './../../../resources/enum/languages.enum';
 
 const settingsInitialState: SettingsState = {
-    numberPhotos: 5,
+    photoAmount: 5,
     language: Languages.pl
 }
 
@@ -13,27 +13,14 @@ export function SettingsReducer(
     action: SettingsAction
 ): SettingsState {
     switch (action.type) {
-        case SettingsActionTypes.getNumberPhotos: {
-            return {
-                ...state
-            }
-        }
-
-        case SettingsActionTypes.setNumberPhotos: {
+        case SettingsActionTypes.setPhotoAmount: {
             return {
                 ...state,
-                numberPhotos: action.payload
-            }
-        }
-
-        case SettingsActionTypes.getLanguage: {
-            return {
-                ...state
+                photoAmount: action.payload
             }
         }
 
         case SettingsActionTypes.setLanguage: {
-            console.log(action.payload)
             return {
                 ...state,
                 language: action.payload

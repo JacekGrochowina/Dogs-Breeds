@@ -1,2 +1,15 @@
 <app-header>Rasy psów</app-header>
-<p>breeds works!</p>
+
+<mat-nav-list *ngIf="(breeds$ | async) as breeds">
+
+    <ng-container *ngFor="let breed of breeds">
+        <mat-list-item>{{ breed[0] | titlecase }}</mat-list-item>
+
+        <mat-nav-list *ngIf="breed[1].length > 0" style="margin-left:30px;">
+            <div *ngFor="let subbreed of breed[1]">
+                <mat-list-item>{{ breed[0] | titlecase }} {{ subbreed | titlecase }}</mat-list-item>
+            </div>
+        </mat-nav-list>
+    </ng-container>
+
+</mat-nav-list>

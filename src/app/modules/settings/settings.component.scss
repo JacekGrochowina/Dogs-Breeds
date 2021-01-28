@@ -1,0 +1,19 @@
+.settings__row {
+    width: 100%;
+    max-width: 40rem;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.settings__grow {
+    flex-grow: 1;
+}
+
+.settings__static {
+    min-width: 13rem;
+}
+
+.settings__static > .full-width {
+    width: 100%;
+}

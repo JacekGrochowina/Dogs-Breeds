@@ -1,2 +1,29 @@
 <app-header>Ustawienia</app-header>
-<p>settings works!</p>
+
+<div class="settings__row">
+    <div class="settings__grow">
+        <p>Liczba wyświetlanych zdjęć danej podrasy</p>
+    </div>
+    <div class="settings__static">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Liczba zdjęć</mat-label>
+            <input matInput #nbrPhoto type="number" maxlength="256" [(ngModel)]="numberPhoto" min="1" max="100" (change)="checkValue()">
+            <mat-hint align="end">Wartość z zakresu <strong>{{ this.range.min }} - {{ this.range.max }}</strong> </mat-hint>
+        </mat-form-field>
+    </div>
+</div>
+
+<div class="settings__row">
+    <div class="settings__grow">
+        <p>Wybierz język</p>
+    </div>
+    <div class="settings__static">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Język aplikacji</mat-label>
+            <mat-select [(ngModel)]="language">
+              <mat-option value="pl">Polski</mat-option>
+              <mat-option value="en">Angielski</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>

@@ -16,6 +16,8 @@ import { environment } from 'src/environments/environment';
 import { BreedsReducer } from './modules/breeds/+state/breeds.reducers';
 import { BreedsEffects } from './modules/breeds/+state/breeds.effects';
 
+import { SettingsReducer } from './modules/settings/+state/settings.reducers';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,9 @@ import { BreedsEffects } from './modules/breeds/+state/breeds.effects';
     HttpClientModule,
     StoreModule.forRoot({
       // @ts-ignore
-      breeds: BreedsReducer
+      breeds: BreedsReducer,
+      // @ts-ignore
+      settings: SettingsReducer
     }),
     EffectsModule.forRoot([BreedsEffects]),
     StoreDevtoolsModule.instrument({

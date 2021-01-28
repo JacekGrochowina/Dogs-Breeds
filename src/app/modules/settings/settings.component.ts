@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { SettingsFacade } from './+state/settings.facade';
 
 interface Range {
   min: number;
@@ -10,27 +11,46 @@ interface Range {
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent {
 
   range: Range = {
     min: 1,
     max: 100
   }
-  numberPhoto: number = 5;
-  language: string = 'pl';
+  numberPhotos: number = this.settingsFacade.getNumberPhotos();
+  language: string = this.settingsFacade.getLanguage();
 
-  constructor() { }
+  constructor(private settingsFacade: SettingsFacade) { }
 
-  ngOnInit(): void {
+  changeNumberPhotos(): void {
+    this.checkValue();
+    if(this.isCorrect()) {
+      this.settingsFacade.setNumberPhotos(this.numberPhotos);
+    }
   }
 
   checkValue(): void {
-    if(this.numberPhoto <= this.range.min) {
-      this.numberPhoto = 1;
+    if(this.isTooLow()) {
+      this.numberPhotos = 1;
     }
-    if(this.numberPhoto > this.range.max) {
-      this.numberPhoto = 100;
+    if(this.isTooHigh()) {
+      this.numberPhotos = 100;
     }
   }
 
+  isTooLow(): boolean {
+    return this.numberPhotos < this.range.min;
+  }
+
+  isTooHigh(): boolean {
+    return this.numberPhotos > this.range.max;
+  }
+
+  isCorrect(): boolean {
+    return this.numberPhotos >= this.range.min || this.numberPhotos <= this.range.max;
+  }
+
+  changeLanguage(): void {
+    this.settingsFacade.setLanguage(this.language);
+  }
 }

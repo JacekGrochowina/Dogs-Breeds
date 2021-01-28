@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
+import { SettingsFacade } from './+state/settings.facade';
 
 @NgModule({
   declarations: [SettingsComponent],
@@ -20,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatGridListModule,
     MatSelectModule,
-  ]
+  ],
+  providers: [SettingsFacade]
 })
 export class SettingsModule { }

@@ -6,10 +6,8 @@ import { GetBreeds } from './breeds.actions';
 
 @Injectable()
 export class BreedsFacade {
-  // @TODO tutaj się rozpierdala typowanie stora
   breeds$ = this.store.select(store => (store as any).breeds.breeds);
 
-  // @TODO a rozpierdala się przed zły typ w constructorze
   constructor(private store: Store<AppState>) {
   }
 

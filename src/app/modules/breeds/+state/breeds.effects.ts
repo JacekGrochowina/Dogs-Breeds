@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators'
 
 import { BreedsActionTypes, GetBreedsSuccess } from './breeds.actions';
-import { BreedsService } from '../services/breeds.service';
+import { BreedsService } from '../../../services/breeds.service';
 
 @Injectable()
 export class BreedsEffects {

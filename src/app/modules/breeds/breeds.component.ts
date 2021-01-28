@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { BreedsFacade } from 'src/app/+state/breeds.facade';
-import { Breeds } from 'src/app/resources/interfaces/breeds.interface';
+import { BreedsFacade } from './+state/breeds.facade';
 
 @Component({
   selector: 'app-breeds',

@@ -1,5 +1,5 @@
 import { BreedsAction, BreedsActionTypes } from './breeds.actions';
-import { BreedsState } from '../resources/interfaces/breeds-state.interface';
+import { BreedsState } from '../../../resources/interfaces/breeds-state.interface';
 
 const breedsInitialState: BreedsState = {
   breeds: []

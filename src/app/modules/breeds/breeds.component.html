@@ -1,23 +1,13 @@
 <app-header>Rasy psów</app-header>
 
 <mat-nav-list *ngIf="(breeds$ | async) as breeds">
-    <!-- <ng-container *ngFor="let breedKey of breeds">
-        <mat-list-item>{{ breedKey | titlecase }}</mat-list-item>
-
-        <mat-nav-list *ngIf="data[breedKey].length > 0" style="margin-left:30px;">
-            <div *ngFor="let breed of data[breedKey]">
-                <mat-list-item>{{ breed | titlecase }}</mat-list-item>
-            </div>
-        </mat-nav-list>
-
-    </ng-container> -->
 
     <ng-container *ngFor="let breed of breeds">
-        <mat-list-item>{{ breed[0] }}</mat-list-item>
+        <mat-list-item>{{ breed[0] | titlecase }}</mat-list-item>
 
         <mat-nav-list *ngIf="breed[1].length > 0" style="margin-left:30px;">
             <div *ngFor="let subbreed of breed[1]">
-                <mat-list-item>{{ subbreed }}</mat-list-item>
+                <mat-list-item>{{ breed[0] | titlecase }} {{ subbreed | titlecase }}</mat-list-item>
             </div>
         </mat-nav-list>
     </ng-container>

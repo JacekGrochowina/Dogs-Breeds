@@ -1,3 +1,4 @@
 export interface GetBreedImgResponse {
-    message: { [id: string]: string[] }
+    message: string[],
+    status: string
 }

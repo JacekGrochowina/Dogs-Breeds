@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { FooterComponent } from 'src/app/components/footer/footer.component';
@@ -21,6 +22,7 @@ const SharedComponents = [
   declarations: [SharedComponents],
   imports: [
     CommonModule,
+    RouterModule,
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,

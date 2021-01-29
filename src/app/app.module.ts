@@ -17,6 +17,7 @@ import { BreedsReducer } from './modules/breeds/+state/breeds.reducers';
 import { BreedsEffects } from './modules/breeds/+state/breeds.effects';
 
 import { SettingsReducer } from './modules/settings/+state/settings.reducers';
+import { SubBreedReducer } from './modules/breeds/subbreed/+state/subbreed.reducers';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { SettingsReducer } from './modules/settings/+state/settings.reducers';
       // @ts-ignore
       breeds: BreedsReducer,
       // @ts-ignore
-      settings: SettingsReducer
+      subbreed: SubBreedReducer,
+      // @ts-ignore
+      settings: SettingsReducer,
     }),
     EffectsModule.forRoot([BreedsEffects]),
     StoreDevtoolsModule.instrument({

@@ -7,6 +7,10 @@ import { SharedModule } from '../../shared/shared.module';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+
+import { SettingsFacade } from '../../settings/+state/settings.facade';
+import { SubBreedFacade } from './+state/subbreed.facade';
 
 @NgModule({
   declarations: [SubbreedComponent],
@@ -16,6 +20,11 @@ import { MatIconModule } from '@angular/material/icon';
     SharedModule,
     MatButtonModule,
     MatIconModule,
+    MatDividerModule,
+  ],
+  providers: [
+    SettingsFacade,
+    SubBreedFacade
   ]
 })
 export class SubbreedModule { }

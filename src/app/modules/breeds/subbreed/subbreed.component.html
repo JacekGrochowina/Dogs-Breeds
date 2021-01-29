@@ -11,3 +11,8 @@
         src="{{ image }}"
         alt="{{ breed }}">
 </div>
+
+<div class="breeds-images-info" *ngIf="displayImagesAmount > imagesAmount">
+    <mat-divider></mat-divider>
+    <p>Nie mamy aż <b>{{ displayImagesAmount }}</b> zdjęć tej rasy... 😔 Wyświetliliśmy wszystko co mamy... (<b>{{ imagesAmount }}</b>) </p>
+</div>

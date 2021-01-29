@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { BreedsComponent } from './breeds.component';
-import { SubbreedComponent } from './subbreed/subbreed.component';
 
-const routes: Routes = [{ path: '', component: BreedsComponent }];
+const routes: Routes = [
+  { path: '', component: BreedsComponent },
+  { path: 'breed/:breed', loadChildren: () => import('./subbreed/subbreed.module').then(m => m.SubbreedModule) },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

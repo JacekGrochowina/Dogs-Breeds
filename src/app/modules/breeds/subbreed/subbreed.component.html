@@ -1,0 +1,13 @@
+<button mat-mini-fab color="primary" (click)="backHome()" aria-label="Back to home page">
+    <mat-icon>home</mat-icon>
+</button>
+
+<app-header>{{ breed | titlecase }} {{ subbreed | titlecase }}</app-header>
+
+<div class="breeds-images">
+    <img
+        *ngFor="let image of images"
+        class="breeds-images__image"
+        src="{{ image }}"
+        alt="{{ breed }}">
+</div>

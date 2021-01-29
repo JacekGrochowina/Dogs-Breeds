@@ -1,0 +1,15 @@
+.breeds-images {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.breeds-images__image {
+    $margin: 0.2rem;
+    $columns: 3;
+    
+    margin: $margin;
+    width: calc((100% - ((#{$columns} * 2) * #{$margin})) / #{$columns});
+    height: 12.5rem;
+    
+    object-fit: cover;
+}

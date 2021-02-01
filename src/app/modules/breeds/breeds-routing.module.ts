@@ -4,8 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { BreedsComponent } from './breeds.component';
 
 const routes: Routes = [
-  { path: '', component: BreedsComponent },
-  { path: 'breed/:breed', loadChildren: () => import('./subbreed/subbreed.module').then(m => m.SubbreedModule) },
+  {
+    path: '',
+    component: BreedsComponent
+  },
+  {
+    path: 'breed/:breed',
+    loadChildren: () => import('./subbreed/subbreed.module').then(m => m.SubbreedModule)
+  },
 ];
 
 @NgModule({

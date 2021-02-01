@@ -10,7 +10,7 @@ import { Range } from './../../resources/interfaces/range.interface';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit, OnDestroy {
-
+  
   range: Range = {
     min: 1,
     max: 100

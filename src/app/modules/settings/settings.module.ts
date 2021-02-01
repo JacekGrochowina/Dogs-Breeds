@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { SettingsFacade } from './+state/settings.facade';
+import { TranslocoRootModule } from 'src/app/transloco/transloco-root.module';
 
 @NgModule({
   declarations: [SettingsComponent],
@@ -19,6 +20,7 @@ import { SettingsFacade } from './+state/settings.facade';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    TranslocoRootModule,
     MatInputModule,
     MatGridListModule,
     MatSelectModule,

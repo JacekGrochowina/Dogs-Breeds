@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { TranslocoService } from '@ngneat/transloco';
 import { Subject, Subscription } from 'rxjs';
 import { SettingsFacade } from './+state/settings.facade';
 import { Range } from './../../resources/interfaces/range.interface';
@@ -15,8 +16,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
     min: 1,
     max: 100
   }
-  photoAmount!: number;
-  language!: string;
   
   settingsFormGroup = this.fb.group({
     photoAmount: ['', [
@@ -32,7 +31,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   constructor(
     private settingsFacade: SettingsFacade,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private translateService: TranslocoService
   ) { }
 
   ngOnInit() {
@@ -54,7 +54,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   selectLanguage(): void {
-    this.settingsFacade.setLanguage(this.language);
+    this.settingsFacade.setLanguage(this.settingsFormGroup.value.language);
+    this.translateService.setActiveLang(this.settingsFormGroup.value.language);
   }
 
   private handlePhotoAmount(): void {

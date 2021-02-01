@@ -11,6 +11,7 @@ import { MatDividerModule } from '@angular/material/divider';
 
 import { SettingsFacade } from '../../settings/+state/settings.facade';
 import { SubBreedFacade } from './+state/subbreed.facade';
+import { TranslocoRootModule } from 'src/app/transloco/transloco-root.module';
 
 @NgModule({
   declarations: [SubbreedComponent],
@@ -18,6 +19,7 @@ import { SubBreedFacade } from './+state/subbreed.facade';
     CommonModule,
     SubbreedRoutingModule,
     SharedModule,
+    TranslocoRootModule,
     MatButtonModule,
     MatIconModule,
     MatDividerModule,

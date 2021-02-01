@@ -8,12 +8,14 @@ import { BreedsFacade } from './+state/breeds.facade';
 
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslocoRootModule } from 'src/app/transloco/transloco-root.module';
 
 @NgModule({
   declarations: [BreedsComponent],
   imports: [
     CommonModule,
     BreedsRoutingModule,
+    TranslocoRootModule,
     SharedModule,
     MatListModule,
     MatIconModule,

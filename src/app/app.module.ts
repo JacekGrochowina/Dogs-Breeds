@@ -18,6 +18,7 @@ import { BreedsEffects } from './modules/breeds/+state/breeds.effects';
 
 import { SettingsReducer } from './modules/settings/+state/settings.reducers';
 import { SubBreedReducer } from './modules/breeds/subbreed/+state/subbreed.reducers';
+import { TranslocoRootModule } from './transloco/transloco-root.module';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SubBreedReducer } from './modules/breeds/subbreed/+state/subbreed.reduc
     StoreDevtoolsModule.instrument({
       maxAge: 25, logOnly: environment.production
     }),
+    TranslocoRootModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

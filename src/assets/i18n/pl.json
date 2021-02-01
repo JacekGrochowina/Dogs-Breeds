@@ -1,0 +1,33 @@
+{
+    "breeds": {
+        "title": "Rasy psów"
+    },
+    "settings": {
+        "title": "Ustawienia",
+        "photoAmount": {
+            "description": "Liczba wyświetlanych zdjęć danej podrasy",
+            "placeholder": "Liczba zdjęć",
+            "hint": "Wartość z zakresu"
+        },
+        "language": {
+            "description": "Wybierz język",
+            "placeholder": "Język aplikacji",
+            "options": {
+                "pl": "Polski",
+                "en": "Angielski"
+            }
+        }
+    },
+    "subbreed": {
+        "info": "Nie mamy aż {{ count }} zdjęć tej rasy... 😔 Wyświetliliśmy wszystko co mamy..."
+    },
+    "footer": {
+        "content": "Copyright ⓒ 2020 | Firma sp. z o.o."
+    },
+    "sidenav": {
+        "nav": {
+            "home": "Domowa",
+            "settings": "Ustawienia"
+        }
+    }
+}

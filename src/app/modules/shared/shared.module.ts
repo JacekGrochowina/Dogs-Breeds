@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
+import { TranslocoRootModule } from 'src/app/transloco/transloco-root.module';
 
 const SharedComponents = [
   HeaderComponent,
@@ -23,6 +24,7 @@ const SharedComponents = [
   imports: [
     CommonModule,
     RouterModule,
+    TranslocoRootModule,
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,

@@ -4,8 +4,8 @@ import { SettingsAction, SettingsActionTypes } from './settings.actions';
 import { Languages } from './../../../resources/enum/languages.enum';
 
 const settingsInitialState: SettingsState = {
-    photoAmount: 5,
-    language: Languages.pl
+    photoAmount: 6,
+    language: Languages.en
 }
 
 export function SettingsReducer(

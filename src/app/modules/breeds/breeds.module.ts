@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BreedsRoutingModule } from './breeds-routing.module';
 import { BreedsComponent } from './breeds.component';
 import { SharedModule } from '../shared/shared.module';
+
 import { BreedsFacade } from './+state/breeds.facade';
 
 import { MatListModule } from '@angular/material/list';
@@ -22,4 +23,5 @@ import { TranslocoRootModule } from 'src/app/transloco/transloco-root.module';
   ],
   providers: [BreedsFacade]
 })
+
 export class BreedsModule { }

@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Subject, Subscription } from 'rxjs';
 import { SettingsFacade } from './+state/settings.facade';
-
-interface Range {
-  min: number;
-  max: number;
-}
+import { Range } from './../../resources/interfaces/range.interface';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements OnInit, OnDestroy {
 
   range: Range = {
     min: 1,
@@ -19,50 +17,81 @@ export class SettingsComponent implements OnInit {
   }
   photoAmount!: number;
   language!: string;
+  
+  settingsFormGroup = this.fb.group({
+    photoAmount: ['', [
+      Validators.min(1),
+      Validators.max(100)
+    ]],
+    language: [''],
+  })
 
-  constructor(private settingsFacade: SettingsFacade) { }
+  private language$!: Subscription;
+  private photoAmount$!: Subscription;
+  private unsubscribeSubject = new Subject<void>();
+
+  constructor(
+    private settingsFacade: SettingsFacade,
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit() {
     this.handlePhotoAmount();
     this.handleLanguage();
   }
 
-  handlePhotoAmount(): void {
-    this.settingsFacade.photoAmount$
-      .subscribe((photoAmount: number) => {
-        this.photoAmount = photoAmount;
-      });
-  }
+  ngOnDestroy(): void {
+    this.unsubscribeSubject.next();
+    this.unsubscribeSubject.complete();
 
-  handleLanguage(): void {
-    this.settingsFacade.language$
-      .subscribe((language: string) => {
-        this.language = language;
-      });
+    this.photoAmount$.unsubscribe();
+    this.language$.unsubscribe();
   }
 
   onChangePhotoAmount(): void {
     this.checkValue();
-    this.settingsFacade.setNumberPhotos(this.photoAmount);
+    this.settingsFacade.setPhotoAmount(this.settingsFormGroup.value.photoAmount);
   }
 
-  checkValue(): void {
+  selectLanguage(): void {
+    this.settingsFacade.setLanguage(this.language);
+  }
+
+  private handlePhotoAmount(): void {
+    this.photoAmount$ = this.settingsFacade.photoAmount$
+      .subscribe((photoAmount: number) => {
+        this.settingsFormGroup.patchValue({
+          photoAmount: photoAmount,
+        });
+      });
+  }
+
+  private handleLanguage(): void {
+    this.language$ = this.settingsFacade.language$
+      .subscribe((language: string) => {
+        this.settingsFormGroup.patchValue({
+          language: language,
+        })
+      });
+  }
+
+  private checkValue(): void {
     if(this.isTooLow()) {
-      this.photoAmount = 1;
+      this.settingsFormGroup.patchValue({
+        photoAmount: this.range.min,
+      })
     } else if(this.isTooHigh()) {
-      this.photoAmount = 100;
+      this.settingsFormGroup.patchValue({
+        photoAmount: this.range.max,
+      })
     }
   }
 
-  isTooLow(): boolean {
-    return this.photoAmount < this.range.min;
+  private isTooLow(): boolean {
+    return this.settingsFormGroup.value.photoAmount < this.range.min;
   }
 
-  isTooHigh(): boolean {
-    return this.photoAmount > this.range.max;
-  }
-
-  changeLanguage(): void {
-    this.settingsFacade.setLanguage(this.language);
+  private isTooHigh(): boolean {
+    return this.settingsFormGroup.value.photoAmount > this.range.max;
   }
 }

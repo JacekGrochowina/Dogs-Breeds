@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 
 import { SettingsRoutingModule } from './settings-routing.module';
 import { SettingsComponent } from './settings.component';
@@ -17,6 +17,7 @@ import { SettingsFacade } from './+state/settings.facade';
     CommonModule,
     SettingsRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     MatInputModule,
     MatGridListModule,

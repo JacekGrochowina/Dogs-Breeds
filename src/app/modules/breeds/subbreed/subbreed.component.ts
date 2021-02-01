@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { BreedsService } from './../../../services/breeds.service';
 import { SettingsFacade } from './../../settings/+state/settings.facade';
 import { SubBreedFacade } from './+state/subbreed.facade';
+import { GetBreedImgResponse } from 'src/app/resources/responses/get-breed-img.response';
 
 @Component({
   selector: 'app-subbreed',
@@ -18,6 +19,8 @@ export class SubbreedComponent implements OnInit, OnDestroy {
   imagesAmount!: number;
   displayImagesAmount!: number;
 
+  private images$!: Subscription;
+  private displayImagesAmount$!: Subscription;
   private unsubscribeSubject = new Subject<void>();
 
   constructor(
@@ -39,51 +42,50 @@ export class SubbreedComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribeSubject.next();
     this.unsubscribeSubject.complete();
+
+    this.images$.unsubscribe();
+    this.displayImagesAmount$.unsubscribe();
   }
 
   backHome(): void {
     this.router.navigate(['/']);
   }
 
-  handlePhotoAmount(): void {
-    this.settingsFacade.photoAmount$
+  private handlePhotoAmount(): void {
+    this.displayImagesAmount$ = this.settingsFacade.photoAmount$
       .subscribe((displayImagesAmount: number) => {
         this.displayImagesAmount = displayImagesAmount;
       });
   }
 
-  handleParams(): void {
+  private handleParams(): void {
     let params: ParamMap = this.route.snapshot.paramMap;
     this.breed = params.get('breed')!;
 
-    if(!!!params.get('subbreed')) {
-      this.subbreed = null;
-    } else {
-      this.subbreed = params.get('subbreed');
-    }
+    !params.get('subbreed') ?
+    this.subbreed = null :
+    this.subbreed = params.get('subbreed');
   }
 
-  handleImages(): void {
-    if(!!!this.subbreed) {
-      this.breedsService.getBreedImg(this.breed).subscribe(images => {
-        this.images = images.message;
-        this.getImagesAmount();
-        this.sliceImagesAmount();
-      });
-    } else {
-      this.breedsService.getSubBreedImg(this.breed, this.subbreed).subscribe(images => {
-        this.images = images.message;
-        this.getImagesAmount();
-        this.sliceImagesAmount();
-      });
-    }
+  private handleImages(): void {
+    !this.subbreed ?
+    this.images$ = this.breedsService.getBreedImg(this.breed)
+      .subscribe(images => this.getImages(images)) :
+    this.images$ = this.breedsService.getSubBreedImg(this.breed, this.subbreed)
+      .subscribe(images => this.getImages(images));
   }
 
-  sliceImagesAmount(): void {
+  private getImages(images: GetBreedImgResponse): void {
+    this.images = images.message;
+    this.getImagesAmount();
+    this.sliceImagesAmount();
+  }
+
+  private sliceImagesAmount(): void {
     this.images = this.images.slice(0, this.displayImagesAmount);
   }
 
-  getImagesAmount(): void {
+  private getImagesAmount(): void {
     this.imagesAmount = this.images.length;
   }
 }

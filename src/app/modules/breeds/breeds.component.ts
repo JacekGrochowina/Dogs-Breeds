@@ -7,6 +7,7 @@ import { BreedsFacade } from './+state/breeds.facade';
   templateUrl: './breeds.component.html',
   styleUrls: ['./breeds.component.scss']
 })
+
 export class BreedsComponent implements OnInit, OnDestroy {
   breeds$ = this.breedsFacade.breeds$;
 

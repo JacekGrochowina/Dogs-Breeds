@@ -11,6 +11,7 @@ interface Range {
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
+
 export class SettingsComponent implements OnInit {
 
   range: Range = {

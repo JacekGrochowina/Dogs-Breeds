@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
-import { BreedsService } from './../../../services/breeds.service';
 import { SettingsFacade } from './../../settings/+state/settings.facade';
 import { SubBreedFacade } from './+state/subbreed.facade';
-import { GetBreedImgResponse } from 'src/app/resources/responses/get-breed-img.response';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-subbreed',
@@ -15,77 +14,63 @@ export class SubbreedComponent implements OnInit, OnDestroy {
 
   breed!: string;
   subbreed!: string | null;
-  images!: string[];
-  imagesAmount!: number;
-  displayImagesAmount!: number;
+  photoAmount!: number;
+  displayPhotoAmount!: number;
+  photos!: string[];
+  photos$ = this.subBreedFacade.photos$;
 
-  private images$!: Subscription;
-  private displayImagesAmount$!: Subscription;
   private unsubscribeSubject = new Subject<void>();
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private breedsService: BreedsService,
     private settingsFacade: SettingsFacade,
     private subBreedFacade: SubBreedFacade
   ) { }
 
   ngOnInit(): void {
-    this.subBreedFacade.getPhotos();
-
     this.handleParams();
-    this.handleImages();
+    this.handlePhotos();
     this.handlePhotoAmount();
+    this.slicePhotoAmount();
   }
 
   ngOnDestroy(): void {
     this.unsubscribeSubject.next();
     this.unsubscribeSubject.complete();
-
-    this.images$.unsubscribe();
-    this.displayImagesAmount$.unsubscribe();
   }
 
   backHome(): void {
     this.router.navigate(['/']);
   }
 
-  private handlePhotoAmount(): void {
-    this.displayImagesAmount$ = this.settingsFacade.photoAmount$
-      .subscribe((displayImagesAmount: number) => {
-        this.displayImagesAmount = displayImagesAmount;
-      });
-  }
-
   private handleParams(): void {
     let params: ParamMap = this.route.snapshot.paramMap;
     this.breed = params.get('breed')!;
 
-    !params.get('subbreed') ?
-    this.subbreed = null :
-    this.subbreed = params.get('subbreed');
+    this.subbreed = !params.get('subbreed') ? null : params.get('subbreed');
   }
 
-  private handleImages(): void {
+  private handlePhotos(): void {
     !this.subbreed ?
-    this.images$ = this.breedsService.getBreedImg(this.breed)
-      .subscribe(images => this.getImages(images)) :
-    this.images$ = this.breedsService.getSubBreedImg(this.breed, this.subbreed)
-      .subscribe(images => this.getImages(images));
+    this.subBreedFacade.getBreedPhotos(this.breed) :
+    this.subBreedFacade.getSubBreedPhotos(this.breed, this.subbreed);
   }
 
-  private getImages(images: GetBreedImgResponse): void {
-    this.images = images.message;
-    this.getImagesAmount();
-    this.sliceImagesAmount();
+  private handlePhotoAmount(): void {
+    this.settingsFacade.photoAmount$
+      .pipe(takeUntil(this.unsubscribeSubject))
+      .subscribe((displayPhotoAmount: number) => {
+        this.displayPhotoAmount = displayPhotoAmount;
+      })
   }
 
-  private sliceImagesAmount(): void {
-    this.images = this.images.slice(0, this.displayImagesAmount);
-  }
-
-  private getImagesAmount(): void {
-    this.imagesAmount = this.images.length;
+  private slicePhotoAmount(): void {
+    this.photos$
+      .pipe(takeUntil(this.unsubscribeSubject))
+      .subscribe((photos: string[]) => {
+        this.photoAmount = photos.length;
+        this.photos = photos.slice(0, this.displayPhotoAmount);
+      })
   }
 }

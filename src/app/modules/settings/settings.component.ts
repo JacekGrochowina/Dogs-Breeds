@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TranslocoService } from '@ngneat/transloco';
 import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { SettingsFacade } from './+state/settings.facade';
 import { Range } from './../../resources/interfaces/range.interface';
 
@@ -25,8 +26,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
     language: [''],
   })
 
-  private language$!: Subscription;
-  private photoAmount$!: Subscription;
   private unsubscribeSubject = new Subject<void>();
 
   constructor(
@@ -43,9 +42,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribeSubject.next();
     this.unsubscribeSubject.complete();
-
-    this.photoAmount$.unsubscribe();
-    this.language$.unsubscribe();
   }
 
   onChangePhotoAmount(): void {
@@ -59,7 +55,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   private handlePhotoAmount(): void {
-    this.photoAmount$ = this.settingsFacade.photoAmount$
+    this.settingsFacade.photoAmount$
+      .pipe(takeUntil(this.unsubscribeSubject))
       .subscribe((photoAmount: number) => {
         this.settingsFormGroup.patchValue({
           photoAmount: photoAmount,
@@ -68,7 +65,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   private handleLanguage(): void {
-    this.language$ = this.settingsFacade.language$
+    this.settingsFacade.language$
+      .pipe(takeUntil(this.unsubscribeSubject))
       .subscribe((language: string) => {
         this.settingsFormGroup.patchValue({
           language: language,

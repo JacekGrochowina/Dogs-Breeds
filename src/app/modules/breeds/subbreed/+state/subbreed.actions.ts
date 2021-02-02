@@ -2,29 +2,55 @@ import { Action } from '@ngrx/store';
 import { HttpErrorResponse } from '@angular/common/http';
 
 export enum SubBreedActionTypes {
-    getPhotos = '[Subbreed] Get Photos',
-    getPhotosSuccess = '[Subbreed] Get Photos Success',
-    getPhotosFail = '[Subbreed] Get Photos Fail',
+    getBreedPhotos = '[Breed] Get Breed Photos',
+    getBreedPhotosSuccess = '[Breed] Get Breed Photos Success',
+    getBreedPhotosFail = '[Breed] Get Breed Photos Fail',
+    getSubBreedPhotos = '[Subbreed] Get SubBreed Photos',
+    getSubBreedPhotosSuccess = '[Subbreed] Get SubBreed Photos Success',
+    getSubBreedPhotosFail = '[Subbreed] Get SubBreed Photos Fail'
 }
 
-export class GetPhotos implements Action {
-    readonly type = SubBreedActionTypes.getPhotos;
+export class GetBreedPhotos implements Action {
+    readonly type = SubBreedActionTypes.getBreedPhotos;
+
+    constructor(public payload: string) {}
 }
 
-export class GetPhotosSuccess implements Action {
-    readonly type = SubBreedActionTypes.getPhotosSuccess;
+export class GetBreedPhotosSuccess implements Action {
+    readonly type = SubBreedActionTypes.getBreedPhotosSuccess;
 
     constructor(public payload: string[]) {}
 }
 
-export class GetPhotosFail implements Action {
-    readonly type = SubBreedActionTypes.getPhotosFail;
+export class GetBreedPhotosFail implements Action {
+    readonly type = SubBreedActionTypes.getBreedPhotosFail;
+
+    constructor(public payload: HttpErrorResponse) {}
+}
+
+export class GetSubBreedPhotos implements Action {
+    readonly type = SubBreedActionTypes.getSubBreedPhotos;
+
+    constructor(public payload: string[]) {}
+}
+
+export class GetSubBreedPhotosSuccess implements Action {
+    readonly type = SubBreedActionTypes.getSubBreedPhotosSuccess;
+
+    constructor(public payload: string[]) {}
+}
+
+export class GetSubBreedPhotosFail implements Action {
+    readonly type = SubBreedActionTypes.getSubBreedPhotosFail;
 
     constructor(public payload: HttpErrorResponse) {}
 }
 
 export type SubBreedAction
-    = GetPhotos
-    | GetPhotosSuccess
-    | GetPhotosFail;
+    = GetBreedPhotos
+    | GetBreedPhotosSuccess
+    | GetBreedPhotosFail
+    | GetSubBreedPhotos
+    | GetSubBreedPhotosSuccess
+    | GetSubBreedPhotosFail;
     

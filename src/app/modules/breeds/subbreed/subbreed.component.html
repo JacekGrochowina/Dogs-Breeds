@@ -6,13 +6,13 @@
 
 <div class="breeds-images">
     <img
-        *ngFor="let image of images"
+        *ngFor="let photo of photos;"
         class="breeds-images__image"
-        src="{{ image }}"
-        alt="{{ breed }}">
+        [src]="photo"
+        [alt]="breed">
 </div>
 
-<div class="breeds-images-info" *ngIf="displayImagesAmount > imagesAmount">
+<div class="breeds-images-info" *ngIf="displayPhotoAmount > photoAmount">
     <mat-divider></mat-divider>
-    <p>{{ 'subbreed.info' | transloco: { count: displayImagesAmount } }}</p>
+    <p>{{ 'subbreed.info' | transloco: { count: displayPhotoAmount } }}</p>
 </div>

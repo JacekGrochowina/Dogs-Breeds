@@ -2,15 +2,21 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { AppState } from 'src/app/+state/app-state.model';
-import { GetPhotos } from './subbreed.actions';
+import { GetBreedPhotos, GetSubBreedPhotos } from './subbreed.actions';
 
 @Injectable()
 export class SubBreedFacade {
+    photos$ = this.store.select(store => (store as any).subbreed.photos);
+
     constructor(private store: Store<AppState>) {
     }
     
-    // getPhotos(breed: string, subbreed?: string): void {
-    getPhotos(): void {
-        this.store.dispatch(new GetPhotos());
+    getBreedPhotos(breed: string): void {
+        this.store.dispatch(new GetBreedPhotos(breed));
+    }
+
+    getSubBreedPhotos(breed: string, subbreed: string): void {
+        const params: string[] = [breed, subbreed];
+        this.store.dispatch(new GetSubBreedPhotos(params));
     }
 }

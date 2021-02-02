@@ -10,20 +10,39 @@ export function SubBreedReducer(
     action: SubBreedAction
 ): SubBreedState {
     switch (action.type) {
-        case SubBreedActionTypes.getPhotos: {
+        case SubBreedActionTypes.getBreedPhotos: {
             return {
                 ...state
             };
         }
 
-        case SubBreedActionTypes.getPhotosSuccess: {
+        case SubBreedActionTypes.getBreedPhotosSuccess: {
             return {
                 ...state,
                 photos: action.payload
             };
         }
 
-        case SubBreedActionTypes.getPhotosFail: {
+        case SubBreedActionTypes.getBreedPhotosFail: {
+            return {
+                ...state
+            };
+        }
+
+        case SubBreedActionTypes.getSubBreedPhotos: {
+            return {
+                ...state
+            };
+        }
+
+        case SubBreedActionTypes.getSubBreedPhotosSuccess: {
+            return {
+                ...state,
+                photos: action.payload
+            };
+        }
+
+        case SubBreedActionTypes.getSubBreedPhotosFail: {
             return {
                 ...state
             };

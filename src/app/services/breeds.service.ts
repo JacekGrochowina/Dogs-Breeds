@@ -11,8 +11,8 @@ import { GetBreedImgResponse } from '../resources/responses/get-breed-img.respon
 export class BreedsService {
   readonly endpoints = {
     getBreeds: `${environment.apiUrl}s/list/all`,
-    getBreedImg: (breed: string) => `${environment.apiUrl}/${breed}/images`,
-    getSubBreedImg: (breed: string, subbreed: string) => `${environment.apiUrl}/${breed}/${subbreed}/images`,
+    getBreedPhotos: (breed: string) => `${environment.apiUrl}/${breed}/images`,
+    getSubBreedPhotos: (breed: string, subbreed: string) => `${environment.apiUrl}/${breed}/${subbreed}/images`,
   };
 
   constructor(private http: HttpClient) {
@@ -22,11 +22,11 @@ export class BreedsService {
     return this.http.get<GetBreedsResponse>(this.endpoints.getBreeds);
   }
 
-  getBreedImg(breed: string): Observable<GetBreedImgResponse> {
-    return this.http.get<GetBreedImgResponse>(this.endpoints.getBreedImg(breed));
+  getBreedPhotos(breed: string): Observable<GetBreedImgResponse> {
+    return this.http.get<GetBreedImgResponse>(this.endpoints.getBreedPhotos(breed));
   }
 
-  getSubBreedImg(breed: string, subbreed: string): Observable<GetBreedImgResponse> {
-    return this.http.get<GetBreedImgResponse>(this.endpoints.getSubBreedImg(breed, subbreed));
+  getSubBreedPhotos(params: string[]): Observable<GetBreedImgResponse> {
+    return this.http.get<GetBreedImgResponse>(this.endpoints.getSubBreedPhotos(params[0], params[1]));
   }
 }

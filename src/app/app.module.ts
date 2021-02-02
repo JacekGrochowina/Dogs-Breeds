@@ -18,6 +18,9 @@ import { BreedsReducer } from './modules/breeds/+state/breeds.reducers';
 import { BreedsEffects } from './modules/breeds/+state/breeds.effects';
 
 import { SettingsReducer } from './modules/settings/+state/settings.reducers';
+import { SubBreedReducer } from './modules/breeds/subbreed/+state/subbreed.reducers';
+import { TranslocoRootModule } from './transloco/transloco-root.module';
+import { SubBreedEffects } from './modules/breeds/subbreed/+state/subbreed.effects';
 
 @NgModule({
   declarations: [
@@ -34,12 +37,18 @@ import { SettingsReducer } from './modules/settings/+state/settings.reducers';
       // @ts-ignore
       breeds: BreedsReducer,
       // @ts-ignore
-      settings: SettingsReducer
+      subbreed: SubBreedReducer,
+      // @ts-ignore
+      settings: SettingsReducer,
     }),
-    EffectsModule.forRoot([BreedsEffects]),
+    EffectsModule.forRoot([
+      BreedsEffects,
+      SubBreedEffects
+    ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, logOnly: environment.production
     }),
+    TranslocoRootModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

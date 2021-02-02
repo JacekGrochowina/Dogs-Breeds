@@ -1,29 +1,39 @@
-<app-header>Ustawienia</app-header>
+<app-header>{{ 'settings.title' | transloco }}</app-header>
 
-<div class="settings__row">
-    <div class="settings__grow">
-        <p>Liczba wyświetlanych zdjęć danej podrasy</p>
+<form [formGroup]="settingsFormGroup">
+    <div class="settings__row">
+        <div class="settings__grow">
+            <p>{{ 'settings.photoAmount.description' | transloco }}</p>
+        </div>
+        <div class="settings__static">
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>{{ 'settings.photoAmount.placeholder' | transloco }}</mat-label>
+                <input 
+                    matInput
+                    formControlName="photoAmount"
+                    id="photoAmount"
+                    type="number"
+                    (change)="onChangePhotoAmount()">
+                <mat-hint align="end">{{ 'settings.photoAmount.hint' | transloco }} <strong>{{ this.range.min }} - {{ this.range.max }}</strong> </mat-hint>
+            </mat-form-field>
+        </div>
     </div>
-    <div class="settings__static">
-        <mat-form-field appearance="fill" class="full-width">
-            <mat-label>Liczba zdjęć</mat-label>
-            <input matInput #phAmount type="number" maxlength="256" [(ngModel)]="photoAmount" min="1" max="100" (change)="onChangePhotoAmount()">
-            <mat-hint align="end">Wartość z zakresu <strong>{{ this.range.min }} - {{ this.range.max }}</strong> </mat-hint>
-        </mat-form-field>
+    
+    <div class="settings__row">
+        <div class="settings__grow">
+            <p>{{ 'settings.language.description' | transloco }}</p>
+        </div>
+        <div class="settings__static">
+            <mat-form-field appearance="fill" class="full-width">
+                <mat-label>{{ 'settings.language.placeholder' | transloco }}</mat-label>
+                <mat-select
+                    formControlName="language"
+                    id="language"
+                    (selectionChange)="selectLanguage()">
+                  <mat-option value="pl">{{ 'settings.language.options.pl' | transloco }}</mat-option>
+                  <mat-option value="en">{{ 'settings.language.options.en' | transloco }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </div>
-</div>
-
-<div class="settings__row">
-    <div class="settings__grow">
-        <p>Wybierz język</p>
-    </div>
-    <div class="settings__static">
-        <mat-form-field appearance="fill" class="full-width">
-            <mat-label>Język aplikacji</mat-label>
-            <mat-select [(value)]="language" (selectionChange)="changeLanguage()">
-              <mat-option value="pl">Polski</mat-option>
-              <mat-option value="en">Angielski</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-</div>
+</form>

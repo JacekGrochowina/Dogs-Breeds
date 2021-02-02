@@ -1,0 +1,18 @@
+<button mat-mini-fab color="primary" (click)="backHome()" aria-label="Back to home page">
+    <mat-icon>home</mat-icon>
+</button>
+
+<app-header>{{ breed | titlecase }} {{ subbreed | titlecase }}</app-header>
+
+<div class="breeds-images">
+    <img
+        *ngFor="let photo of photos;"
+        class="breeds-images__image"
+        [src]="photo"
+        [alt]="breed">
+</div>
+
+<div class="breeds-images-info" *ngIf="displayPhotoAmount > photoAmount">
+    <mat-divider></mat-divider>
+    <p>{{ 'subbreed.info' | transloco: { count: displayPhotoAmount } }}</p>
+</div>

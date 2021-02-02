@@ -1,0 +1,33 @@
+{
+    "breeds": {
+        "title": "Dogs Breeds"
+    },
+    "settings": {
+        "title": "Settings",
+        "photoAmount": {
+            "description": "The number of breed's photos to be display",
+            "placeholder": "Photo amount",
+            "hint": "Range"
+        },
+        "language": {
+            "description": "Select language",
+            "placeholder": "App language",
+            "options": {
+                "pl": "Poland",
+                "en": "English"
+            }
+        }
+    },
+    "subbreed": {
+        "info": "We don't have {{ count }} photos of this breed... 😔 We've shown everything we have..."
+    },
+    "footer": {
+        "content": "Copyright ⓒ 2020 | Company sp. z o.o."
+    },
+    "sidenav": {
+        "nav": {
+            "home": "Home",
+            "settings": "Settings"
+        }
+    }
+}

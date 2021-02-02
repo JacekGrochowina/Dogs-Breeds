@@ -5,7 +5,7 @@ export enum SettingsActionTypes {
     setLanguage = '[Settings] Set Language',
 }
 
-export class SetNumberPhotos implements Action {
+export class SetPhotoAmount implements Action {
     readonly type = SettingsActionTypes.setPhotoAmount;
 
     constructor(public payload: number) {}
@@ -18,5 +18,5 @@ export class SetLanguage implements Action {
 }
 
 export type SettingsAction
-    = SetNumberPhotos
+    = SetPhotoAmount
     | SetLanguage;

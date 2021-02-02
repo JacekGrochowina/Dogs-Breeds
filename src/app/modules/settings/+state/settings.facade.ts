@@ -1,9 +1,8 @@
-import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { AppState } from 'src/app/+state/app-state.model';
-import { SetLanguage, SetNumberPhotos } from './settings.actions';
+import { SetLanguage, SetPhotoAmount } from './settings.actions';
 
 @Injectable()
 export class SettingsFacade {
@@ -13,11 +12,11 @@ export class SettingsFacade {
     constructor(private store: Store<AppState>) {
     }
 
-    setNumberPhotos(numberPhotos: number): void {
-        this.store.dispatch(new SetNumberPhotos(numberPhotos));
+    setPhotoAmount(numberPhotos: number): void {
+        this.store.dispatch(new SetPhotoAmount(numberPhotos));
     }
 
-    setLanguage(language: string) {
+    setLanguage(language: string): void {
         this.store.dispatch(new SetLanguage(language))
     }
 }

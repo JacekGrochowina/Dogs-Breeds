@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: BreedsComponent
-  }
+  },
+  {
+    path: 'breed/:breed',
+    loadChildren: () => import('./subbreed/subbreed.module').then(m => m.SubbreedModule)
+  },
 ];
 
 @NgModule({

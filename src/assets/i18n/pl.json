@@ -1,6 +1,10 @@
 {
     "breeds": {
-        "title": "Rasy psów"
+        "title": "Rasy psów",
+        "table": {
+            "name": "Nazwa rasy",
+            "action": "Akcja"
+        }
     },
     "settings": {
         "title": "Ustawienia",

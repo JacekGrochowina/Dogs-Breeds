@@ -8,6 +8,8 @@ import { BreedsFacade } from './+state/breeds.facade';
 
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 import { TranslocoRootModule } from 'src/app/transloco/transloco-root.module';
 
 import { StoreModule } from '@ngrx/store';
@@ -22,6 +24,8 @@ import { BreedsReducer } from './+state/breeds.reducers';
     SharedModule,
     MatListModule,
     MatIconModule,
+    MatTableModule,
+    MatButtonModule,
     StoreModule.forFeature('breeds', BreedsReducer)
   ],
   providers: [BreedsFacade]

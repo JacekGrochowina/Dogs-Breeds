@@ -14,11 +14,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 
-import { BreedsReducer } from './modules/breeds/+state/breeds.reducers';
 import { BreedsEffects } from './modules/breeds/+state/breeds.effects';
 
 import { SettingsReducer } from './modules/settings/+state/settings.reducers';
-import { SubBreedReducer } from './modules/breeds/subbreed/+state/subbreed.reducers';
 import { TranslocoRootModule } from './transloco/transloco-root.module';
 import { SubBreedEffects } from './modules/breeds/subbreed/+state/subbreed.effects';
 
@@ -35,11 +33,7 @@ import { SubBreedEffects } from './modules/breeds/subbreed/+state/subbreed.effec
     HttpClientModule,
     StoreModule.forRoot({
       // @ts-ignore
-      breeds: BreedsReducer,
-      // @ts-ignore
-      subbreed: SubBreedReducer,
-      // @ts-ignore
-      settings: SettingsReducer,
+      settings: SettingsReducer
     }),
     EffectsModule.forRoot([
       BreedsEffects,

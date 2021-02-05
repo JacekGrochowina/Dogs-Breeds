@@ -11,6 +11,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslocoRootModule } from 'src/app/transloco/transloco-root.module';
 
+import { StoreModule } from '@ngrx/store';
+import { BreedsReducer } from './+state/breeds.reducers';
+
 @NgModule({
   declarations: [BreedsComponent],
   imports: [
@@ -20,6 +23,7 @@ import { TranslocoRootModule } from 'src/app/transloco/transloco-root.module';
     SharedModule,
     MatListModule,
     MatIconModule,
+    StoreModule.forFeature('breeds', BreedsReducer)
   ],
   providers: [BreedsFacade]
 })

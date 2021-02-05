@@ -6,7 +6,7 @@ import { GetBreedPhotos, GetSubBreedPhotos } from './subbreed.actions';
 
 @Injectable()
 export class SubBreedFacade {
-    photos$ = this.store.select(store => (store as any).subbreed.photos);
+    photos$ = this.store.select(store => (store as any).subbreeds.photos);
 
     constructor(private store: Store<AppState>) {
     }

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { SettingsFacade } from './../../settings/+state/settings.facade';
 import { SubBreedFacade } from './+state/subbreed.facade';
 import { takeUntil } from 'rxjs/operators';
@@ -17,7 +17,6 @@ export class SubbreedComponent implements OnInit, OnDestroy {
   photoAmount!: number;
   displayPhotoAmount!: number;
   photos!: string[];
-  photos$ = this.subBreedFacade.photos$;
 
   private unsubscribeSubject = new Subject<void>();
 
@@ -66,7 +65,7 @@ export class SubbreedComponent implements OnInit, OnDestroy {
   }
 
   private slicePhotoAmount(): void {
-    this.photos$
+    this.subBreedFacade.photos$
       .pipe(takeUntil(this.unsubscribeSubject))
       .subscribe((photos: string[]) => {
         this.photoAmount = photos.length;

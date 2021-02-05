@@ -13,6 +13,9 @@ import { SettingsFacade } from '../../settings/+state/settings.facade';
 import { SubBreedFacade } from './+state/subbreed.facade';
 import { TranslocoRootModule } from 'src/app/transloco/transloco-root.module';
 
+import { StoreModule } from '@ngrx/store';
+import { SubBreedReducer } from './+state/subbreed.reducers';
+
 @NgModule({
   declarations: [SubbreedComponent],
   imports: [
@@ -23,6 +26,7 @@ import { TranslocoRootModule } from 'src/app/transloco/transloco-root.module';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    StoreModule.forFeature('subbreeds', SubBreedReducer)
   ],
   providers: [
     SettingsFacade,

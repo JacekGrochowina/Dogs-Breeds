@@ -1,6 +1,10 @@
 {
     "breeds": {
-        "title": "Dogs Breeds"
+        "title": "Dogs Breeds",
+        "table": {
+            "name": "Breed name",
+            "action": "Action"
+        }
     },
     "settings": {
         "title": "Settings",

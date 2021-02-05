@@ -1,0 +1,39 @@
+.breeds-table {
+  width: 100%;
+}
+  
+.breeds-table__detail-row {
+  height: 0;
+}
+
+.breeds-table__element-row:not(.example-expanded-row):hover {
+  background: #f5f5f5;
+}
+
+.breeds-table__element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.breeds-table__element-row td {
+  border-bottom-width: 0;
+}
+
+.breeds-table__element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.breeds-table__expanded-row .breeds-table__icon--arrow {
+  transform: rotate(180deg);
+  transition: transform 225ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.breeds-table__list {
+  width: 100%;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.breeds-table__item {
+  font-size: 0.9rem;
+}

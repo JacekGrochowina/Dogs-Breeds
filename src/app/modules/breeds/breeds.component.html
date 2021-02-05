@@ -1,15 +1,47 @@
 <app-header>{{ 'breeds.title' | transloco }}</app-header>
 
-<mat-nav-list *ngIf="(breeds$ | async) as breeds">
+<table mat-table [dataSource]="breeds" *ngIf="(breeds$ | async) as breeds; let index" multiTemplateDataRows class="breeds-table">
 
-    <ng-container *ngFor="let breed of breeds">
-        <mat-list-item [routerLink]="['breed/', breed[0]]">{{ breed[0] | titlecase }}</mat-list-item>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> {{ 'breeds.table.name' | transloco }} </th>
+    <td mat-cell *matCellDef="let breed"> {{ breed[0] | titlecase }} </td>
+  </ng-container>
 
-        <mat-nav-list *ngIf="breed[1].length > 0" style="margin-left:30px;">
-            <div *ngFor="let subbreed of breed[1]">
-                <mat-list-item [routerLink]="['breed/', breed[0], {subbreed: subbreed}]">{{ breed[0] | titlecase }} {{ subbreed | titlecase }}</mat-list-item>
-            </div>
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> {{ 'breeds.table.action' | transloco }} </th>
+    <td mat-cell *matCellDef="let breed">
+      <ng-container *ngIf="breed[1].length === 0">
+        <button mat-icon-button color="primary" [routerLink]="['breed/', breed[0]]" class="breeds-table__icon" aria-label="Visibility icon">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="breed[1].length > 0">
+        <button mat-icon-button color="primary"
+            (click)="expandedBreed = expandedBreed == breed ? null : breed"
+            class="breeds-table__icon breeds-table__icon--arrow"
+            aria-label="Visibility icon">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let breed" [attr.colspan]="displayedColumns.length">
+
+      <div *ngIf="breed[1].length > 0" class="breeds-table__element-detail" [@detailExpand]="breed === expandedBreed ? 'expanded' : 'collapsed'">
+        <mat-nav-list class="breeds-table__list">
+          <mat-list-item role="listitem" *ngFor="let subbreed of breed[1]" [routerLink]="['breed/', breed[0], {subbreed: subbreed}]" class="breeds-table__item"> {{ breed[0] | titlecase }} {{ subbreed | titlecase }} </mat-list-item>
         </mat-nav-list>
-    </ng-container>
+      </div>
 
-</mat-nav-list>
+    </td>
+  </ng-container>
+
+  <tr mat-row *matRowDef="let breed; columns: displayedColumns;"
+      class="breeds-table__element-row"
+      [class.breeds-table__expanded-row]="expandedBreed === breed">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="breeds-table__detail-row"></tr>
+
+</table>

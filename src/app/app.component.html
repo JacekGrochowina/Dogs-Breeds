@@ -1,5 +1,7 @@
 <app-sidenav>
-  <router-outlet></router-outlet>
+  <div [@fadeAnimation]="outlet.isActivated ? outlet.activatedRoute : ''" class="router">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
 </app-sidenav>
 
 <app-footer></app-footer>
